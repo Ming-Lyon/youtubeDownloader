@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Téléchargeur vidéo local</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <main class="card">
+    <h1>Téléchargeur vidéo local</h1>
+    <p class="notice">Utilisez uniquement des contenus que vous possédez ou que vous êtes autorisé à télécharger.</p>
+    <form id="form">
+      <label>URL YouTube
+        <input id="url" type="url" required placeholder="https://www.youtube.com/watch?v=...">
+      </label>
+      <label>Définition maximale
+        <select id="quality">
+          <option value="720">720p</option>
+          <option value="1080" selected>1080p</option>
+          <option value="2160">4K (2160p)</option>
+        </select>
+      </label>
+      <label class="check"><input id="subtitles" type="checkbox"> Télécharger les sous-titres</label>
+      <label id="langsWrap" hidden>Langues de sous-titres
+        <input id="subtitleLangs" value="fr,en" pattern="[a-zA-Z0-9_,.*-]+">
+        <small>Exemples : fr,en ou all</small>
+      </label>
+      <button type="submit">Télécharger</button>
+    </form>
+    <section id="panel" hidden aria-live="polite">
+      <div class="progress"><div id="bar"></div></div>
+      <p id="status">Préparation…</p>
+      <pre id="logs"></pre>
+    </section>
+  </main>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+services:
+  downloader:
+    build: .
+    container_name: youtube-downloader
+    ports:
+      - "127.0.0.1:8080:80"
+    volumes:
+      - ./downloads:/app/downloads
+    environment:
+      PORT: "80"
+      MAX_CONCURRENT: "1"
+    init: true
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
